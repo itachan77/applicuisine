@@ -1,3 +1,24 @@
 https://youtu.be/3K6oBiQK8aA
 
-php bin/console : on va dans le répertoire bin et dans le fichier console où se trouve toutes les commandes
+- php bin/console : on va dans le répertoire bin et dans le fichier console où se trouve toutes les commandes
+
+- asserts : utiliser les contraints pour gérer la validation des données pour que Doctrine, l'ORM, sache ce qu'il peut 
+mettre ou pas dans la base de données par exemble si un email est dans le bon format, il pourra bien y avoir persistance sinon non. 
+Lien pour avoir la liste des différents asserts (à mettre au-dessus des propriétés de nos entités à "asserter") 
+dans symfony cliquer sur ce lien : https://symfony.com/doc/current/validation.html#constraints
+
+******FIXTURES****** 
+- composer require --dev orm-fixtures  : pour créer des fixtures afin d'avoir de fausses données pour notre base de données : 
+Un dossier DataFixtures vient s'installer dans le répertoire src
+- composer require fakerphp/faker --dev : pour générer des faux noms (https://fakerphp.github.io/formatters/text-and-paragraphs/)
+- ensuite, aller dans DataFixtures/AppFixtures.php et : 
+
+        ** créer une fonction privée generator_faker
+        
+        ** créer notre fixture (ex: 
+        $ingredient = new Ingredient(); $ingredient->setName('Ingredient #1')->setPrice("3.0");
+            // ->setCreatedAt("") Inutile car un constructure dans la classe Ingredient a été créé de manière à ce que la date se crée toute seule
+        $manager->persist($ingredient);
+        $manager->flush();
+        )
+- php bin/console doctrine:fixtures:load : pour envoyer tout ce qu'il y a dans le fichier  AppFixtures.php dans la base de données
