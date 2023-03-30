@@ -1,0 +1,3 @@
+https://youtu.be/3K6oBiQK8aA
+
+php bin/console : on va dans le répertoire bin et dans le fichier console où se trouve toutes les commandes
